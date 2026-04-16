@@ -2,8 +2,11 @@ name: Update Portfolio Screenshot
 
 on:
   schedule:
-    - cron: "0 0 * * 0"  # every Sunday
+    - cron: "0 0 * * 0"
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   screenshot:
@@ -18,9 +21,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install Playwright
+      - name: Install dependencies
         run: |
-          npm init -y
           npm install playwright
           npx playwright install --with-deps
 
@@ -31,19 +33,26 @@ jobs:
           (async () => {
             const browser = await chromium.launch();
             const page = await browser.newPage();
+
             await page.setViewportSize({ width: 1280, height: 800 });
-            await page.goto('https://your-website-link.com', {
+
+            await page.goto('https://asifsamir.com', {
               waitUntil: 'networkidle'
             });
-            await page.screenshot({ path: 'landing.png', fullPage: false });
+
+            await page.screenshot({
+              path: 'landing.png',
+              fullPage: false
+            });
+
             await browser.close();
           })();
           "
 
       - name: Commit and push
         run: |
-          git config user.name 'github-actions'
-          git config user.email 'github-actions@github.com'
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
           git add landing.png
           git commit -m "Update portfolio screenshot" || echo "No changes"
           git push
