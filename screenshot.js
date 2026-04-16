@@ -1,31 +1,33 @@
 const { chromium } = require("playwright");
-const sharp = require("sharp");
 
 const URL = "https://asifsamir.com";
 
-// 👇 change these freely while testing
-let x = 0;
-let y = 220;
-let width = 1280;
-let height = 400;
-
 (async () => {
-  const browser = await chromium.launch({ headless: false }); // 👈 visible browser
+  const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
 
+  // Keep viewport stable (VERY important for consistent cropping)
   await page.setViewportSize({ width: 1280, height: 800 });
 
   await page.goto(URL, { waitUntil: "networkidle" });
 
-  await page.waitForTimeout(1500); // let animations settle
+  await page.waitForTimeout(1500);
 
-  await page.screenshot({ path: "full.png", fullPage: false });
+  // Optional: ensure page is fully rendered
+  await page.waitForLoadState("networkidle");
+
+  // Screenshot with manual crop (clip region)
+  await page.screenshot({
+    path: "landing.png",
+    clip: {
+      x: 0,        // horizontal start
+      y: 200,      // vertical offset (top cut)
+      width: 1280, // crop width
+      height: 450  // crop height (hero slice)
+    }
+  });
 
   await browser.close();
 
-  await sharp("full.png")
-    .extract({ left: x, top: y, width, height })
-    .toFile("landing.png");
-
-  console.log("Saved landing.png");
+  console.log("✅ Cropped screenshot saved as landing.png");
 })();
