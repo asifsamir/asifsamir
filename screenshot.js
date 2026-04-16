@@ -9,7 +9,7 @@ const URL = "https://asifsamir.com";
   // Fixed viewport (your requirement)
   await page.setViewportSize({
     width: 1280,
-    height: 560
+    height: 565
   });
 
   await page.goto(URL, {
