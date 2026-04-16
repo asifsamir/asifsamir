@@ -16,6 +16,6 @@ Here are some ideas to get you started:
 -->
 
 
-[![Portfolio](https://image.thum.io/get/width/1200/https://asifsamir.com)](https://asifsamir.com)
+[![Visit my Portfolio](landing.png)](https://asifsamir.com)
 
-👉 Visit my portfolio: https://asifsamir.com
+Curious about me? Please visit- 👉 https://asifsamir.com
