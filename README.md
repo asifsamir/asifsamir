@@ -14,3 +14,8 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+[![Portfolio](https://image.thum.io/get/width/1200/https://asifsamir.com)](https://asifsamir.com)
+
+👉 Visit my portfolio: https://asifsamir.com
