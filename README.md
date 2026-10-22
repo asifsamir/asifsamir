@@ -16,6 +16,6 @@ Here are some ideas to get you started:
 -->
 
 
-[![Visit my Portfolio](landing.png)](https://asifsamir.com)
+[![Visit my Portfolio](landing.png)](https://asifsamir.com) 
 
 Please visit my site for more details:  👉 https://asifsamir.com
